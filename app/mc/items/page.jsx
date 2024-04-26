@@ -151,9 +151,10 @@ function GenericRadio({ title, components, setComponents, keyName, options, desc
 
 export default function MCItems() {
     const [item, setItem] = useState("stone_sword");
-
+    
     const [loading, setLoading] = useState(true);
     const [lang, setLang] = useState({});
+    const [items, setItems] = useState({});
 
     const [components, setComponents] = useState({});
     const [output, setOutput] = useState("");
@@ -178,8 +179,9 @@ export default function MCItems() {
     useEffect(() => {
         async function doFetch() {
             const resp = await fetch('https://raw.githubusercontent.com/misode/mcmeta/assets/assets/minecraft/lang/en_us.json');
-            const json = await resp.json();
-            setLang(json);
+            setLang(await resp.json());
+            const resp2 = await fetch('https://raw.githubusercontent.com/misode/mcmeta/summary/item_components/data.json');
+            setItems(await resp.json());
             setLoading(false);
         };
         doFetch();
@@ -229,14 +231,6 @@ export default function MCItems() {
         setOutput("/give @a " + itemString);
     }, [item, components]);
 
-    const [items, setItems] = useState({});
-    useEffect(() => {
-        async function doFetch() {
-            const resp = await fetch('https://raw.githubusercontent.com/misode/mcmeta/summary/item_components/data.json');
-            setItems(await resp.json());
-        };
-        doFetch();
-    }, [])
 
     return <>
         <div className={styles.container}>
