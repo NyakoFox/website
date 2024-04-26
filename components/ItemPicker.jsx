@@ -17,7 +17,7 @@ export default function ItemPicker({ item, setItem, lang, className, items }) {
 
     return <div className={className}>
         <div onClick={() => setOpen(!open)} className={style.item_picker_display}>
-            {item == null ? 'Select Item...' : <ItemRenderer lang={lang} item={item} name={true}/>}
+            {item == null ? 'Select Item...' : <ItemRenderer lang={lang} item={item} name={true} components={componentArrayToObject(items[item])} />}
             <div className={style.arrow}>{open ? '⮝' : '⮟'}</div>
         </div>
         {open && <div className={style.item_picker}>
