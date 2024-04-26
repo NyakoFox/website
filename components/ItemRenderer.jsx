@@ -27,6 +27,24 @@ export default function ItemRenderer({ item, lang = {}, name = false, components
         bold: false,
         italic: false
     }
+
+    if (components.rarity === "common")
+    {
+        baseStyle.color = "white";
+    }
+    else if (components.rarity === "uncommon")
+    {
+        baseStyle.color = "yellow";
+    }
+    else if (components.rarity === "rare")
+    {
+        baseStyle.color = "aqua";
+    }
+    else if (components.rarity === "epic")
+    {
+        baseStyle.color = "light_purple";
+    }
+
     if (hasCustomName)
     {
         baseStyle.italic = true;
@@ -68,7 +86,7 @@ export default function ItemRenderer({ item, lang = {}, name = false, components
                 }
             }} />
             {
-                name && <TextRenderer text={displayName} />
+                name && <TextRenderer text={displayName} baseStyle={baseStyle} />
             }
             {
                 !components.hide_tooltip && hovered && <div ref={tooltip} className={style.tooltip}><TextRenderer text={displayName} baseStyle={baseStyle} /></div>

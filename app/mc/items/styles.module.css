@@ -33,8 +33,23 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
-.item {
+.grid > * {
     text-align: center;
+}
+
+.grid p {
+    white-space: pre-wrap;
+}
+
+.grid textarea {
+    width: 100%;
+    resize: none;
+    background-color: #333;
+    color: #eef;
+    border: 2px solid #555;
+    border-radius: .5rem;
+    padding: .5rem;
+    box-sizing: border-box;
 }
 
 .description {
@@ -51,4 +66,7 @@
     border-radius: .5rem;
     border: 2px solid #555;
     margin-top: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-all;
 }
