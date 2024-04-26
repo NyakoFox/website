@@ -181,7 +181,7 @@ export default function MCItems() {
             const resp = await fetch('https://raw.githubusercontent.com/misode/mcmeta/assets/assets/minecraft/lang/en_us.json');
             setLang(await resp.json());
             const resp2 = await fetch('https://raw.githubusercontent.com/misode/mcmeta/summary/item_components/data.json');
-            setItems(await resp.json());
+            setItems(await resp2.json());
             setLoading(false);
         };
         doFetch();
