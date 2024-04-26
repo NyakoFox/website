@@ -1,0 +1,26 @@
+
+.item_picker_display {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    height: fit-content;
+    border-radius: 0.5rem;
+    border: #555 solid 2px;
+    padding: 0.5rem;
+}
+
+.item_picker {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    gap: 2rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: #555 solid 2px;
+    background-color: #333;
+}
