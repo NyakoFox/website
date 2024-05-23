@@ -100,6 +100,8 @@ export default function Home() {
         <WindowsButton />
         <a href="https://vscode.dev/" target="_blank"><img src="https://88x31.kate.pet/vscode.gif" height="31" draggable={false} /></a>
         <WiiButton />
+        <a href="https://kristal.cc/" target="_blank"><img src="/buttons/virovirokun.gif" height="31" draggable={false} /></a>
+        <a href="https://www.smwcentral.net/?p=profile&id=57839" target="_blank"><img src="/buttons/smwc.gif" height="31" draggable={false} /></a>
       </div>
 
       {/*
