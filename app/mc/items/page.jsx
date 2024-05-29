@@ -165,9 +165,9 @@ export default function MCItems() {
         // let's merge them together, with the custom ones taking precedence
 
         let newComponents = {}
-        items[item].forEach(element => {
-            newComponents[element.type.replace("minecraft:", "")] = element.value;
-        });
+        for (const [key, value] in Object.entries(items[item])) {
+            newComponents[key.replace("minecraft:", "")] = value;
+        };
 
         for (const key in components) {
             newComponents[key] = components[key];
