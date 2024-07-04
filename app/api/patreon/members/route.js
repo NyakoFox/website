@@ -50,7 +50,10 @@ export async function POST(request) {
     const secret = body.secret;
 
     if (secret !== process.env.SECRET_KEY) {
-        return NextResponse.error('Invalid secret');
+        return NextResponse.json({
+            success: false,
+            error: 'Invalid secret key'
+        });
     }
 
     // if the user exists, update, otherwise create
