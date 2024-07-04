@@ -47,6 +47,11 @@ export async function POST(request) {
     const body = await request.json();
     const email = body.email;
     const mcUsername = body.mc_username;
+    const secret = body.secret;
+
+    if (secret !== process.env.SECRET) {
+        return NextResponse.error('Invalid secret');
+    }
 
     // if the user exists, update, otherwise create
     const user = await AppPrismaClient.member.findUnique({
