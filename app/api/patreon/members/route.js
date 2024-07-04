@@ -1,3 +1,4 @@
+import { AppPrismaClient } from '@/src/prisma';
 import { NextResponse } from 'next/server';
 
 const { patreon } = require('patreon')
@@ -16,17 +17,63 @@ export async function GET(request) {
     let members = [];
     let pledges = campaignFetch.store.findAll("pledge");
 
-    pledges.forEach((pledge) => {
+    await Promise.all(pledges.map(async (pledge) => {
         let member = pledge.patron.first_name;
         let tier = pledge.reward.title;
+
+        let email = pledge.patron.email;
+
+        // get their mc username using their email
+        const user = await AppPrismaClient.member.findUnique({
+            where: {
+                email: email
+            }
+        });
 
         members.push({
             member: member,
             tier: tier,
+            mc_username: user ? user.mcUsername ?? false : false
         });
-    });
+    }));
 
     return NextResponse.json({
         members: members,
+    });
+}
+
+export async function POST(request) {
+    // This has a json body of an email and a mc username
+    const body = await request.json();
+    const email = body.email;
+    const mcUsername = body.mc_username;
+
+    // if the user exists, update, otherwise create
+    const user = await AppPrismaClient.member.findUnique({
+        where: {
+            email: email
+        }
+    });
+
+    if (user) {
+        await AppPrismaClient.member.update({
+            where: {
+                email: email
+            },
+            data: {
+                mcUsername: mcUsername
+            }
+        });
+    } else {
+        await AppPrismaClient.member.create({
+            data: {
+                email: email,
+                mcUsername: mcUsername
+            }
+        });
+    }
+
+    return NextResponse.json({
+        success: true
     });
 }
