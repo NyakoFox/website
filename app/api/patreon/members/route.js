@@ -49,7 +49,7 @@ export async function POST(request) {
     const mcUsername = body.mc_username;
     const secret = body.secret;
 
-    if (secret !== process.env.SECRET) {
+    if (secret !== process.env.SECRET_KEY) {
         return NextResponse.error('Invalid secret');
     }
 
