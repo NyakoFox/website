@@ -18,9 +18,8 @@ function fRandom() {
     return Math.random();
 }
 
-function getcol(t, glow)
+function getcol(t, glow, noflashingmode)
 {
-    const noflashingmode = false;
     let trinketcolset = false;
     let trinketr = 0
     let trinketg = 0
@@ -201,7 +200,7 @@ function getcol(t, glow)
     return getRGB(255, 255, 255);
 }
 
-export function Color({ id }) {
+export function Color({ id, noflashingmode }) {
     const canvas = useRef(null);
 
     const boxWidth = 24;
@@ -224,7 +223,7 @@ export function Color({ id }) {
             glow.current -= 2;
             if (glow.current < 2) glowdir.current = 0;
         }
-        color.current = getcol(id, glow.current);
+        color.current = getcol(id, glow.current, noflashingmode);
     }
 
     const renderColors = () => {
@@ -249,11 +248,14 @@ export function Color({ id }) {
     const animate = time => {
         if (previousTimeRef.current != undefined) {
             const deltaTime = time - previousTimeRef.current;
+            let update = false;
             timerRef.current += deltaTime;
-            if (timerRef.current >= 1000 / 30) {
+            while (timerRef.current >= 1000 / 30) {
                 timerRef.current -= 1000 / 30;
-                updateColors();
+                update = true;
             }
+
+            if (update) updateColors();
 
             renderColors();
         }
@@ -265,7 +267,7 @@ export function Color({ id }) {
         requestRef.current = requestAnimationFrame(animate);
         timerRef.current = 0;
         return () => cancelAnimationFrame(requestRef.current);
-    }, []); // Make sure the effect runs only once
+    }, [noflashingmode]); // Make sure the effect runs only once
 
     return <canvas ref={canvas} key={id} width={boxWidth} height={boxHeight} style={{
         width: boxWidth*2,
@@ -275,12 +277,18 @@ export function Color({ id }) {
 }
 
 export default function ColorList() {
+    const [noflashingmode, setNoflashingmode] = useState(true);
+
     const allColorIDs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 100, 101, 102];
 
     return <div className={styles.container}>
+        <label>
+            <input type="checkbox" checked={noflashingmode} onChange={e => setNoflashingmode(e.target.checked)} />
+            Reduce flashing mode (VVVVVV accessibility option)
+        </label>
         <div className={styles.colorList}>
         {
-            allColorIDs.map((colorID) => <Color key={colorID} id={colorID} />)
+            allColorIDs.map((colorID) => <Color key={colorID} id={colorID} noflashingmode={noflashingmode} />)
         }
         </div>
 
