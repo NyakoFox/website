@@ -22,7 +22,7 @@
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    max-width: 640px;
+    max-width: 90%;
     padding: 1rem;
     box-sizing: border-box;
 }

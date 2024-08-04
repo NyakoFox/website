@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from './TextboxGenerator.module.css';
 
 export default function TextboxGenerator() {
-    const [text, setText] = useState('Type here!');
+    const [text, setText] = useState('');
     const canvas = useRef(null);
 
     useEffect(() => {
