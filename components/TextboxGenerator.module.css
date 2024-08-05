@@ -11,11 +11,6 @@
 .container canvas {
     image-rendering: pixelated;
     filter: drop-shadow(4px 4px .5rem #000);
-    /* white border */
-    border: 1px solid #fff;
-    /* 2x size */
-    width: 640px;
-    max-width: 100%;
     -webkit-font-smoothing: none;
     font-smooth: never;
 }
