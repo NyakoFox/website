@@ -43,6 +43,18 @@ export function get_text_size(font, text)
         {
             cx += get_advance(font, char)
         }
+        else if (font.fallback_font !== undefined && char in font.fallback_font.chars)
+        {
+            cx += width
+        }
+        else if (0xFFFD in chars)
+        {
+            cx += get_advance(font, 0xFFFD)
+        }
+        else
+        {
+            cx += get_advance(font, 63)
+        }
     }
 
     return { width: cx, height: height }
@@ -115,6 +127,32 @@ export function draw_text(ctx, font, text, x, y)
             ctx.drawImage(newCanvas, c.x, c.y, width, height, cx, cy, width, height)
             cx += get_advance(font, char)
         }
+        else if (font.fallback_font !== undefined && char in font.fallback_font.chars)
+        {
+            const c = font.fallback_font.chars[char]
+
+            const fallback_width = font.fallback_font.width
+            const fallback_height = font.fallback_font.height
+
+            const offx = Math.trunc((width - fallback_width) / 2)
+            const offy = Math.trunc((height - fallback_height) / 2)
+
+            ctx.drawImage(font.fallback_font.image, c.x, c.y, font.fallback_font.width, font.fallback_font.height, cx + offx, cy + offy, font.fallback_font.width, font.fallback_font.height)
+            cx += width
+        }
+        else if (0xFFFD in chars)
+        {
+            const c = chars[0xFFFD]
+            ctx.drawImage(newCanvas, c.x, c.y, width, height, cx, cy, width, height)
+            cx += get_advance(font, 0xFFFD)
+        }
+        else
+        {
+            // use ?
+            const c = chars[63]
+            ctx.drawImage(newCanvas, c.x, c.y, width, height, cx, cy, width, height)
+            cx += get_advance(font, 63)
+        }
     }
 }
 
@@ -140,6 +178,11 @@ export async function load_font(font_name)
         chars: {},
         special: {},
         image: image
+    }
+
+    if (font.fallback !== undefined)
+    {
+        font.fallback_font = await load_font(font.fallback)
     }
 
     if (font.white_teeth == 0)
@@ -187,6 +230,12 @@ export async function load_font(font_name)
     }
 
     // loop through root -> special
+    if (root.getElementsByTagName('special').length == 0)
+    {
+        // no special characters
+        return font
+    }
+
     for (const special of root.getElementsByTagName('special')[0].getElementsByTagName('range'))
     {
         const start = parseInt(special.getAttribute('start'))

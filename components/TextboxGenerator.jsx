@@ -27,6 +27,16 @@ export default function TextboxGenerator() {
         transparent: {r: 0,   g: 0,  b: 0  }
     });
 
+    const [selectedFont, setSelectedFont] = useState('font');
+
+    const fonts = {
+        "english/…": "font",
+        "日本語": "font_ja",
+        "简体中文": "font_sc",
+        "繁體中文": "font_tc",
+        "한국어": "font_ko"
+    }
+
     const [customColor, setCustomColor] = useState({r: 164, g: 164, b: 255});
 
     const canvas = useRef(null);
@@ -43,11 +53,11 @@ export default function TextboxGenerator() {
     }
 
     useEffect(() => {
-        load_font('font').then((font) => {
+        load_font(selectedFont).then((font) => {
             console.log('Font loaded');
             setFont(font);
         });
-    }, [])
+    }, [selectedFont]);
 
     useEffect(() => {
         if (!font) return;
@@ -103,9 +113,16 @@ export default function TextboxGenerator() {
             draw_text(ctx, font, lines[i], 8, 8 + (height * i));
         }
 
-    }, [text, customColor]);
+    }, [text, customColor, font]);
 
     return <div className={styles.container}>
+
+        <select value={selectedFont} onChange={e => setSelectedFont(e.target.value)}>
+            {
+                Object.keys(fonts).map(f => <option key={f} value={fonts[f]}>{f}</option>)
+            }
+        </select>
+
         <div className={styles.colors}>
             <div className={styles.colorPicker}>
                 {
