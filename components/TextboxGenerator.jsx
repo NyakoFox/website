@@ -13,45 +13,33 @@ export default function TextboxGenerator() {
     const [canvasHeight, setCanvasHeight] = useState(0);
     const [scale, setScale] = useState(2);
 
-    const [colorPickerOpen, setColorPickerOpen] = useState(false);
-
     const [colors, setColors] = useState({
-        player: [164, 164, 255],
-        cyan: [164, 164, 255],
-        red: [255, 60, 60],
-        green: [144, 255, 144],
-        yellow: [255, 255, 134],
-        blue: [95, 95, 255],
-        purple: [255, 134, 255],
-        white: [244, 244, 244],
-        gray: [174, 174, 174],
-        orange: [255, 130, 20],
-        transparent: [0, 0, 0]
+        player:      {r: 164, g:164, b: 255},
+        cyan:        {r: 164, g:164, b: 255},
+        red:         {r: 255, g:60,  b: 60 },
+        green:       {r: 144, g:255, b: 144},
+        yellow:      {r: 255, g:255, b: 134},
+        blue:        {r: 95,  g:95,  b: 255},
+        purple:      {r: 255, g:134, b: 255},
+        white:       {r: 244, g:244, b: 244},
+        gray:        {r: 174, g:174, b: 174},
+        orange:      {r: 255, g:130, b: 20 },
+        transparent: {r: 0,   g: 0,  b: 0  }
     });
 
-    const [customColor, setCustomColor] = useState({r: 255, g: 255, b: 255});
-
-    const [color, setColor] = useState('player');
+    const [customColor, setCustomColor] = useState({r: 164, g: 164, b: 255});
 
     const canvas = useRef(null);
 
-    function getForegroundColor(c = color) {
-        if (c === 'custom') {
-            if (customColor.r === 0 && customColor.g === 0 && customColor.b === 0) return 'rgb(255, 255, 255)';
-            return `rgb(${customColor.r}, ${customColor.g}, ${customColor.b})`;
-        }
-        if (c === 'transparent') return 'rgb(255, 255, 255)';
-        return `rgb(${colors[c].join(',')})`;
+    function getForegroundColor(c = customColor) {
+        if (c.r === 0 && c.g === 0 && c.b === 0) return 'rgb(255, 255, 255)';
+        return `rgb(${c.r}, ${c.g}, ${c.b})`;
     }
 
-    function getBackgroundColor(col = color) {
+    function getBackgroundColor(col = customColor) {
         // divide r, g and b by 6, truncate
-        if (col === 'custom') {
-            if (customColor.r === 0 && customColor.g === 0 && customColor.b === 0) return 'rgb(0, 0, 0)';
-            return `rgb(${customColor.r / 6}, ${customColor.g / 6}, ${customColor.b / 6})`;
-        }
-        if (col === 'transparent') return 'rgb(0, 0, 0)';
-        return `rgb(${colors[col].map(c => Math.trunc(c / 6)).join(',')})`;
+        if (col.r === 0 && col.g === 0 && col.b === 0) return 'rgb(0, 0, 0)';
+        return `rgb(${col.r / 6}, ${col.g / 6}, ${col.b / 6})`;
     }
 
     useEffect(() => {
@@ -91,9 +79,7 @@ export default function TextboxGenerator() {
         ctx.imageSmoothingEnabled = false;
         ctx.scale(scale, scale);
 
-        if (color === 'transparent') {
-        }
-        else if (color === 'custom' && customColor.r === 0 && customColor.g === 0 && customColor.b === 0) {
+        if (customColor.r === 0 && customColor.g === 0 && customColor.b === 0) {
         }
         else
         {
@@ -117,36 +103,54 @@ export default function TextboxGenerator() {
             draw_text(ctx, font, lines[i], 8, 8 + (height * i));
         }
 
-    }, [text, color, customColor]);
+    }, [text, customColor]);
 
     return <div className={styles.container}>
-        <button onClick={() => setColorPickerOpen(!colorPickerOpen)}>Pick color...</button>
-        {
-            colorPickerOpen && <div className={styles.colorPicker}>
+        <div className={styles.colors}>
+            <div className={styles.colorPicker}>
                 {
-                    Object.keys(colors).map(c => <button key={c} style={{color: getForegroundColor(c), backgroundColor: getBackgroundColor(c), borderColor: getForegroundColor(c)}} onClick={() => setColor(c)}>{c}</button>)
+                    Object.keys(colors).map(c => <button key={c} style={{color: getForegroundColor(colors[c]), backgroundColor: getBackgroundColor(colors[c]), borderColor: getForegroundColor(colors[c])}} onClick={() => setCustomColor(colors[c])}>{c}</button>)
                 }
-                <button onClick={() => setColor('custom')}>custom</button>
             </div>
-        }
 
-        {
-            color === 'custom' && <>
-                <RgbColorPicker color={customColor} onChange={setCustomColor} />
+            <div className={styles.customColorPickerGroup}>
+            <RgbColorPicker color={customColor} onChange={setCustomColor} />
                 <div className={styles.customColorInput}>
-                    <label htmlFor="customRed">R</label>
-                    <input id="customRed" type="number" value={customColor.r} min={0} max={255} onChange={e => setCustomColor({...customColor, r: e.target.value})} />
-                    <label htmlFor="customGreen">G</label>
-                    <input id="customGreen" type="number" value={customColor.g} min={0} max={255} onChange={e => setCustomColor({...customColor, g: e.target.value})} />
-                    <label htmlFor="customBlue">B</label>
-                    <input id="customBlue" type="number" value={customColor.b} min={0} max={255} onChange={e => setCustomColor({...customColor, b: e.target.value})} />
+                    <div>
+                        <label htmlFor="customRed">R</label>
+                        <input id="customRed" type="number" value={customColor.r} min={0} max={255} onChange={e => setCustomColor({...customColor, r: e.target.value})} />
+                    </div>
+                    <div>
+                        <label htmlFor="customGreen">G</label>
+                        <input id="customGreen" type="number" value={customColor.g} min={0} max={255} onChange={e => setCustomColor({...customColor, g: e.target.value})} />
+                    </div>
+                    <div>
+                        <label htmlFor="customBlue">B</label>
+                        <input id="customBlue" type="number" value={customColor.b} min={0} max={255} onChange={e => setCustomColor({...customColor, b: e.target.value})} />
+                    </div>
                 </div>
-            </>
-        }
+            </div>
+        </div>
 
         <TextareaAutosize value={text} onChange={e => setText(e.target.value)} style={{resize: 'none'}} placeholder="Your text here..." />
 
-        <canvas ref={canvas} style={{width: canvasWidth, height: canvasHeight}}></canvas>
+        <canvas ref={canvas} style={{width: canvasWidth}}></canvas>
+
+        <div>
+            <button onClick={() => {
+                const link = document.createElement('a');
+                link.download = 'textbox.png';
+                link.href = canvas.current.toDataURL();
+                link.click();
+            }}>Download Image</button>
+
+            <button onClick={() => {
+                // copy
+                canvas.current.toBlob(blob => {
+                    navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                });
+            }}>Copy Image</button>
+        </div>
 
         <p>This requires JS to be enabled.</p>
     </div>
