@@ -135,11 +135,11 @@ export default function TextboxGenerator() {
                 <RgbColorPicker color={customColor} onChange={setCustomColor} />
                 <div className={styles.customColorInput}>
                     <label htmlFor="customRed">R</label>
-                    <input id="customRed" type="number" value={customColor.r} onChange={e => setCustomColor({...customColor, r: e.target.value})} />
+                    <input id="customRed" type="number" value={customColor.r} min={0} max={255} onChange={e => setCustomColor({...customColor, r: e.target.value})} />
                     <label htmlFor="customGreen">G</label>
-                    <input id="customGreen" type="number" value={customColor.g} onChange={e => setCustomColor({...customColor, g: e.target.value})} />
+                    <input id="customGreen" type="number" value={customColor.g} min={0} max={255} onChange={e => setCustomColor({...customColor, g: e.target.value})} />
                     <label htmlFor="customBlue">B</label>
-                    <input id="customBlue" type="number" value={customColor.b} onChange={e => setCustomColor({...customColor, b: e.target.value})} />
+                    <input id="customBlue" type="number" value={customColor.b} min={0} max={255} onChange={e => setCustomColor({...customColor, b: e.target.value})} />
                 </div>
             </>
         }
