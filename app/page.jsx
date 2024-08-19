@@ -91,7 +91,7 @@ export default function Home() {
         </a>
       </p>
       <div className={styles.links}>
-      <a href="https://twitter.com/Nyakorita">twitter</a> •
+      <a href="https://twitter.com/NyakoFox">twitter</a> •
       <a href="https://bsky.app/profile/nyako.gay">bluesky</a> •
       <a href="https://www.youtube.com/@nyakofox">youtube</a>
       </div>
