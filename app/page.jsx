@@ -104,6 +104,11 @@ export default function Home() {
         <a href="https://www.smwcentral.net/?p=profile&id=57839" target="_blank"><img src="/buttons/smwc.gif" height="31" draggable={false} /></a>
       </div>
 
+      <div className={styles.buttons}>
+        <img src="/buttons/nyako.png" height="31" draggable={false} />
+      </div>
+      <p>Right click and copy URL!</p>
+
       {/*
       <br/>
 
