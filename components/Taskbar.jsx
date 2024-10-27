@@ -28,11 +28,6 @@ export default function Taskbar()
                         <div className={styles.start_menu_content}>
                             <div className={styles.start_banner}></div>
                             <div className={styles.start_menu_items}>
-                                <div className={`${styles.start_menu_button}`}>Test1</div>
-                                <div className={`${styles.start_menu_button}`}>Test2</div>
-                                <div className={`${styles.start_menu_button}`}>Test3</div>
-                                <div className={`${styles.start_menu_button}`}>Test4</div>
-                                <div className={`${styles.start_menu_button}`}>Test5</div>
                                 <div className={`${styles.start_menu_button} ${styles.start_menu_button_log_off}`}></div>
                                 <div className={`${styles.start_menu_button} ${styles.start_menu_button_shutdown}`}  onClick={() => setOverlayOpen(!overlayOpen)}></div>
                             </div>
