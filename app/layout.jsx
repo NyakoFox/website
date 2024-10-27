@@ -1,4 +1,5 @@
 import "./globals.css";
+import Taskbar from "@/components/Taskbar";
 
 export const metadata = {
   title: "Nyako",
@@ -29,7 +30,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Taskbar/>
+      </body>
     </html>
   );
 }

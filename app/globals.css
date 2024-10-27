@@ -37,3 +37,15 @@ body {
   -webkit-font-smoothing: none;
   font-smooth: never;
 }
+
+body {
+  /* make room for taskbar! there's two children, page content and taskbar */
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  image-rendering: pixelated;
+}
