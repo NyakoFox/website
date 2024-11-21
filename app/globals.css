@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'MinecraftRegular';
       src: url('/minecraft/regular.otf') format('opentype');
@@ -39,12 +43,8 @@ body {
 }
 
 body {
-  /* make room for taskbar! there's two children, page content and taskbar */
-
-  display: grid;
-  grid-template-rows: 1fr auto;
+  width: 100%;
   height: 100vh;
-  width: 100vw;
   margin: 0;
   padding: 0;
   image-rendering: pixelated;

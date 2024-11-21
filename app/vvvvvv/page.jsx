@@ -2,7 +2,7 @@ import styles from './styles.module.css';
 import ColorList from '@/components/ColorList';
 import TextboxGenerator from '@/components/TextboxGenerator';
 
-export default async function MCItems() {
+export default async function VVVVVVPage() {
     return <>
         <div className={styles.container}>
             <img src="/vvvvvv.png" alt="Minecraft Item Generator" className={styles.logo} />

@@ -5,6 +5,7 @@ import WiiButton from "@/components/WiiButton";
 
 export default function Home() {
   return (
+    <>
     <main className={styles.main}>
 
       <a
@@ -121,5 +122,6 @@ export default function Home() {
 
       */}
     </main>
+    </>
   );
 }
