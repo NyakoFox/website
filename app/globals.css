@@ -1,6 +1,19 @@
+html {
+  height: 100%;
+  margin: 0;
+}
+
 body {
+  width: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
+  image-rendering: pixelated;
+}
+
+img {
+  image-rendering: pixelated;
+  max-width: 100%;
 }
 
 * {
@@ -40,12 +53,4 @@ body {
   src: url(/space-station.ttf) format('truetype');
   -webkit-font-smoothing: none;
   font-smooth: never;
-}
-
-body {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  image-rendering: pixelated;
 }

@@ -13,53 +13,63 @@ export default function Home() {
         target="_blank"
         className={styles.title}
       >
-        <img src="https://text.glitter-graphics.net/sblue/t.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/h.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/i.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/s.gif" border="0" />
+        <span className={styles.word}>
+          <img src="https://text.glitter-graphics.net/sblue/t.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/h.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/i.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/s.gif" border="0" />
+        </span>
         <img
           src="https://dl3.glitter-graphics.net/empty.gif"
           width="20"
           border="0"
         />
+        <span className={styles.word}>
         <img src="https://text.glitter-graphics.net/sblue/s.gif" border="0" />
         <img src="https://text.glitter-graphics.net/sblue/i.gif" border="0" />
         <img src="https://text.glitter-graphics.net/sblue/t.gif" border="0" />
         <img src="https://text.glitter-graphics.net/sblue/e.gif" border="0" />
+        </span>
         <img
           src="https://dl3.glitter-graphics.net/empty.gif"
           width="20"
           border="0"
         />
-        <img src="https://text.glitter-graphics.net/sblue/i.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/s.gif" border="0" />
+        <span className={styles.word}>
+          <img src="https://text.glitter-graphics.net/sblue/i.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/s.gif" border="0" />
+        </span>
         <img
           src="https://dl3.glitter-graphics.net/empty.gif"
           width="20"
           border="0"
         />
-        <img src="https://text.glitter-graphics.net/sblue/u.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/n.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/d.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/e.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/r.gif" border="0" />
+        <span className={styles.word}>
+          <img src="https://text.glitter-graphics.net/sblue/u.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/n.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/d.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/e.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/r.gif" border="0" />
+        </span>
         <img
           src="https://dl3.glitter-graphics.net/empty.gif"
           width="20"
           border="0"
         />
-        <img src="https://text.glitter-graphics.net/sblue/c.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/o.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/n.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/s.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/t.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/r.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/u.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/c.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/t.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/i.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/o.gif" border="0" />
-        <img src="https://text.glitter-graphics.net/sblue/n.gif" border="0" />
+        <span className={styles.word}>
+          <img src="https://text.glitter-graphics.net/sblue/c.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/o.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/n.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/s.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/t.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/r.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/u.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/c.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/t.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/i.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/o.gif" border="0" />
+          <img src="https://text.glitter-graphics.net/sblue/n.gif" border="0" />
+        </span>
       </a>
       <br />
       <br />
@@ -115,6 +125,7 @@ export default function Home() {
       <div className={styles.buttons}>
         <a href="https://sapphic.moe" title="sapphic's site" target="_blank"><img alt="sapphic.moe" height="31" src="/friends/sapphic.png"/></a>
         <a href="https://espi.me" title="espi's site" target="_blank"><img alt="espi's site" height="31" src="/friends/espi.png"/></a>
+        <a href="https://megu.dev" title="megu's site" target="_blank"><img alt="megu's site" height="31" src="/friends/megu.png"/></a>
         <a href="https://picturesforfreeonlinebuynow.neocities.org/" title="pictures for free" target="_blank"><img alt="pictures for free" height="31" src="/friends/pictures.png"/></a>
         <a href="https://eir-nya.gay/" title="eir's site" target="_blank"><img alt="eir's site" height="31" src="/friends/eir.gif"/></a>
       </div>
