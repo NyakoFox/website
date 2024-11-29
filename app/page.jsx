@@ -92,9 +92,10 @@ export default function Home() {
         </a>
       </p>
       <div className={styles.links}>
-      <a href="https://twitter.com/NyakoFox">twitter</a> •
       <a href="https://bsky.app/profile/nyako.gay">bluesky</a> •
-      <a href="https://www.youtube.com/@nyakofox">youtube</a>
+      <a href="https://www.youtube.com/@nyakofox">youtube</a> •
+      <a href="https://nyako.dev/">professional site</a> •
+      <a href="https://nyako.dev/posts/">blog</a>
       </div>
 
       <div className={styles.buttons}>
@@ -108,19 +109,15 @@ export default function Home() {
       <div className={styles.buttons}>
         <img src="/buttons/nyako.png" height="31" draggable={false} />
       </div>
-      <p>Right click and copy URL!</p>
+      <p>Right click and copy URL! <i>And please hotlink in case I decide to change the design in the future!</i></p>
 
-      {/*
-      <br/>
-
-      <h2>friends:</h2>
+      <h2>my awesome cool friends:</h2>
       <div className={styles.buttons}>
-        <a href="https://sapphic.moe" title="sapphic's site" target="_blank">
-          <img alt="Sapphic.moe" height="31" src="/friends/sapphic.png"/>
-        </a>
+        <a href="https://sapphic.moe" title="sapphic's site" target="_blank"><img alt="sapphic.moe" height="31" src="/friends/sapphic.png"/></a>
+        <a href="https://espi.me" title="espi's site" target="_blank"><img alt="espi's site" height="31" src="/friends/espi.png"/></a>
+        <a href="https://picturesforfreeonlinebuynow.neocities.org/" title="pictures for free" target="_blank"><img alt="pictures for free" height="31" src="/friends/pictures.png"/></a>
+        <a href="https://eir-nya.gay/" title="eir's site" target="_blank"><img alt="eir's site" height="31" src="/friends/eir.gif"/></a>
       </div>
-
-      */}
     </main>
     </>
   );

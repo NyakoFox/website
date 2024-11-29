@@ -42,3 +42,21 @@
 
   user-select: none;
 }
+
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background-image: url('/backgrounds/dark.gif');
+    background-blend-mode: multiply;
+    background-color: rgb(127, 64, 127);
+    color: #eee;
+  }
+
+  .main a {
+    color: cyan;
+  }
+
+  .main a:hover {
+    color: lightcyan;
+  }
+}
