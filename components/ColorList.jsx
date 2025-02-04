@@ -745,7 +745,7 @@ export default function ColorList() {
                 }
             </div>
             {
-                getEntityDisplaysForColor().length === 0 && <p>No entities use this color by default.</p>
+                (getEntityDisplaysForColor().length === 0) && <p>No entities use this color by default.</p>
             }
 
             <h3>Color display:</h3>
