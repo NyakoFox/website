@@ -43,8 +43,16 @@ function getDataForEntity(name) {
             return { name: "Gravitron Square Indicators (inaccurate display)", offX: -13, offY: -5, width: 3, height: 6, spriteIDs: [78] };
         case "terminal":
             return { name: "Terminal", width: 16, height: 16, spriteIDs: [17] };
+        case "cosmeticterminal":
+            return { name: "Cosmetic Terminal", width: 16, height: 16, spriteIDs: [17] };
         case "checkpoint":
             return { name: "Checkpoint", width: 16, height: 16, spriteIDs: [21] };
+        case "gravityline":
+            return { name: "Gravity Line", width: 32, height: 1, spriteIDs: [132] };
+        case "gravitylineactive":
+            return { name: "Gravity Line (Active)", width: 32, height: 1, spriteIDs: [132] };
+        case "coin":
+            return { name: "Coin (inaccurate display)", width: 8, height: 8, spriteIDs: [84] };
         case "particle":
             return { name: "Particle", width: 4, height: 4, spriteIDs: [84] };
         case "gravitytoken":
@@ -76,7 +84,7 @@ function getDataForEntity(name) {
         case "teleporteractive":
             return { name: "Active teleporter", width: 96, height: 96, teleporter: "active" };
         case "teleporteractivated":
-            return { name: "Teleporter activated", width: 96, height: 96, teleporter: "activated" };
+            return { name: "Activated teleporter", width: 96, height: 96, teleporter: "activated" };
         case "teleportingcrewmate":
             return { name: "Teleporting crewmate", offX: -6, offY: -2, width: 12, height: 21, spriteIDs: [0] };
         case "motutrophy":
@@ -131,7 +139,7 @@ function getEntityDisplaysForColor(colorID) {
         case 3:
             return ["trinket", "hugewarptoken"];
         case 4:
-            return ["checkpoint", "terminal", "motubase"];
+            return ["checkpoint", "terminal", "cosmeticterminal", "motubase"];
         case 5:
             return ["checkpoint", "terminal"];
         case 6:
@@ -155,6 +163,14 @@ function getEntityDisplaysForColor(colorID) {
             return ["gravitronsquares"];
         case 23:
             return ["gravitronsquareindicators"];
+
+        case 24:
+            return ["gravitylineactive"];
+        case 25:
+            return ["gravityline"];
+
+        case 26:
+            return ["coin"];
 
         case 27:
             return ["particle"];
@@ -687,6 +703,7 @@ export default function ColorList() {
     const [selectedColor, setSelectedColor] = useState(0);
     const [noflashingmode, setNoflashingmode] = usePersistentState('noflashingmode', true);
     const [showUnmergedColors, setShowUnmergedColors] = usePersistentState('showUnmergedColors', false);
+    const [showUnreleasedColors, setShowUnreleasedColors] = usePersistentState('showUnreleasedColors', false);
 
     const [spritesTexture, setSpritesTexture] = useState(null);
     const [teleporterTexture, setTeleporterTexture] = useState(null);
@@ -697,10 +714,15 @@ export default function ColorList() {
     }, [])
 
     const allColorIDs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 100, 101, 102];
-    const unmergedColors = [24, 25, 26, 27];
+    const unmergedColors = [];
+    const unreleasedColors = [24, 25, 26, 27];
 
     if (showUnmergedColors) {
         allColorIDs.push(...unmergedColors);
+    }
+
+    if (showUnreleasedColors) {
+        allColorIDs.push(...unreleasedColors);
     }
 
     // Sort
@@ -712,8 +734,12 @@ export default function ColorList() {
             Reduce flashing mode (VVVVVV accessibility option)
         </label>
         <label className={styles.checkbox}>
-            <input type="checkbox" checked={showUnmergedColors} onChange={e => setShowUnmergedColors(e.target.checked)} />
+            <input type="checkbox" checked={showUnmergedColors} onChange={e => setShowUnmergedColors(e.target.checked)} disabled={unmergedColors.length === 0} />
             Show unmerged colors
+        </label>
+        <label className={styles.checkbox}>
+            <input type="checkbox" checked={showUnreleasedColors} onChange={e => setShowUnreleasedColors(e.target.checked)} disabled={unreleasedColors.length === 0} />
+            Show unreleased colors
         </label>
         <div className={styles.colorList}>
         {
@@ -736,6 +762,15 @@ export default function ColorList() {
                 )
             }
 
+            {
+                (unreleasedColors.includes(selectedColor)) && (
+                    <figure id="unreleased-warning" className={styles.warning}>
+                        <figcaption>Unreleased Color!</figcaption>
+                        <p>This color is not available in the current version of VVVVVV. Once the next version releases, this color will be available.</p>
+                    </figure>
+                )
+            }
+
             <h3>Used by:</h3>
             <div className={styles.centeredFlex}>
                 {
@@ -745,7 +780,7 @@ export default function ColorList() {
                 }
             </div>
             {
-                (getEntityDisplaysForColor().length === 0) && <p>No entities use this color by default.</p>
+                (getEntityDisplaysForColor(selectedColor).length === 0) && <p>No entities use this color by default".</p>
             }
 
             <h3>Color display:</h3>
