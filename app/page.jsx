@@ -75,7 +75,7 @@ export default function Home() {
       <br />
       <a href="https://www.glitter-graphics.com">
         <img
-          src="http://dl7.glitter-graphics.net/pub/546/546677m95gpbskkb.gif"
+          src="https://dl7.glitter-graphics.net/pub/546/546677m95gpbskkb.gif"
           width="150"
           height="160"
           border="0"
@@ -101,6 +101,10 @@ export default function Home() {
           />
         </a>
       </p>
+      <h2>some stuff:</h2>
+      <a href="/vvvvvv">VVVVVV tools</a>
+
+      <h2>find me other places:</h2>
       <div className={styles.links}>
       <a href="https://bsky.app/profile/nyako.gay">bluesky</a> •
       <a href="https://www.youtube.com/@nyakofox">youtube</a> •

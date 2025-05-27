@@ -729,6 +729,10 @@ export default function ColorList() {
     allColorIDs.sort((a, b) => a - b);
 
     return <div className={styles.container}>
+        <p>
+            Colors in VVVVVV are animated through code. The boxes below show every color and let you read more information about them.
+        </p>
+        <br />
         <label className={styles.checkbox}>
             <input type="checkbox" checked={noflashingmode} onChange={e => setNoflashingmode(e.target.checked)} />
             Reduce flashing mode (VVVVVV accessibility option)
