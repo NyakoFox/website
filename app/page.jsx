@@ -132,7 +132,7 @@ export default function Home() {
         <a href="https://megu.dev" title="megu's site" target="_blank"><img alt="megu's site" height="31" src="/friends/megu.png"/></a>
         <a href="https://picturesforfreeonlinebuynow.neocities.org/" title="pictures for free" target="_blank"><img alt="pictures for free" height="31" src="/friends/pictures.png"/></a>
         <a href="https://eir-nya.gay/" title="eir's site" target="_blank"><img alt="eir's site" height="31" src="/friends/eir.gif"/></a>
-        <a href="https://natalie.fyi/" title="natalie's site" target="_blank"><img alt="natalie's site" height="31" src="/friends/natalie.png"/></a>
+        <a href="https://nyatalie.fyi/" title="natalie's site" target="_blank"><img alt="natalie's site" height="31" src="/friends/natalie.png"/></a>
       </div>
     </main>
     </>
